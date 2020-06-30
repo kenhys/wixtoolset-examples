@@ -1,23 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
-    <Product Id="9C7ADA41-D557-44DE-9BD2-E0E6E9D806A8" Name="TestProduct" Language="1033" Version="0.0.0.1" Manufacturer="WixEdit" UpgradeCode="32D206C2-869F-43C7-B0DB-043DE66E620E">
-        <Package Description="Test file in a Product" Comments="Simple test" InstallerVersion="200" Compressed="yes" />
-        <Media Id="1" Cabinet="simple.cab" EmbedCab="yes" />
-        <Directory Id="TARGETDIR" Name="SourceDir">
-            <Directory Id="ProgramFilesFolder" Name="PFiles" />
-            <Directory Id="ProgramMenuFolder">
-                <Directory Id="ProgramMenuDir" Name="TD Agent Builder4 Service Installer">
-                    <Component Id="StartMenuShortcuts" Guid="9B9190BA-E9D6-49FB-8EAB-60E59C3FF3CE">
-                        <RemoveFolder Id="ProgramMenuDir" On="uninstall" />
-                        <RegistryValue Root="HKCU" Key="Software\[Manufacturer]\[ProductName]" Type="string" Value="" />
-                        <util:InternetShortcut Id="WebsiteShortcut" Name="TDAgentBuilder4" Target="https://github.com/fluent-plugins-nursery/td-agent-builder" />
-                    </Component>
-                </Directory>
-            </Directory>
+  <Product Id="9C7ADA41-D557-44DE-9BD2-E0E6E9D806A8" Name="TestProduct" Language="1033" Version="0.0.0.1" Manufacturer="WixEdit" UpgradeCode="32D206C2-869F-43C7-B0DB-043DE66E620E">
+    <Package Description="Test file in a Product" Comments="Simple test" InstallerVersion="200" Compressed="yes" />
+    <Media Id="1" Cabinet="simple.cab" EmbedCab="yes" />
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder" Name="PFiles" />
+      <Directory Id="ProgramMenuFolder">
+        <Directory Id="ProgramMenuDir" Name="TD Agent Builder4 Service Installer">
+          <Component Id="StartMenuShortcuts" Guid="9B9190BA-E9D6-49FB-8EAB-60E59C3FF3CE">
+            <RemoveFolder Id="ProgramMenuDir" On="uninstall" />
+            <RegistryValue Root="HKCU" Key="Software\[Manufacturer]\[ProductName]" Type="string" Value="" />
+            <util:InternetShortcut Id="WebsiteShortcut" Name="TDAgentBuilder4" Target="https://github.com/fluent-plugins-nursery/td-agent-builder" />
+          </Component>
         </Directory>
-        <Feature Id="DefaultFeature" Title="Main Feature" Level="1">
-            <ComponentRef Id="StartMenuShortcuts" />
-        </Feature>
-        <UI />
-    </Product>
+      </Directory>
+      <Directory Id="WINDOWSVOLUME">
+        <Directory Id="OPTLOCATION" Name="opt">
+          <Directory Id="PROJECTLOCATION" Name="td-agent">
+            <Directory Id="TDAgentBinDir"
+                       Name="bin"
+                       ComponentGuidGenerationSeed="3ad15499-f8a4-471b-bc7f-16aa4abfd894">
+              <Component Id="TDAgentBat">
+                <File Name="td-agent2.bat"
+                      KeyPath="yes"
+                      Source="$(var.ProjectSourceDir)\bin\td-agent-service.bat" />
+                <ServiceInstall Id="ServiceInstallFluentdWinSvc"
+                                ErrorControl="normal"
+                                Type="ownProcess"
+                                Name="fluentdwinsvc"
+                                DisplayName="Fluentd Windows Service"
+                                Description="Fluentd is an event collector system."
+                                Start="auto"
+                                Arguments="--reg-winsvc i --reg-winsvc-fluentdopt '-c [PROJECTLOCATION]\etc\td-agent\td-agent.conf -o [PROJECTLOCATION]\td-agent.log'"
+                                Account="[WIX_ACCOUNT_LOCALSYSTEM]" />
+                  <ServiceControl Id="ServiceControlFluentdWinSvc"
+                                  Name="fluentdwinsvc"
+                                  Start="install"
+                                  Stop="both"
+                                  Remove="uninstall" />
+                </Directory>
+              </Component>
+            </Directory>
+          </Directory>
+        </Directory>
+      </Directory>
+    </Directory>
+    <Feature Id="DefaultFeature" Title="Main Feature" Level="1">
+      <ComponentRef Id="StartMenuShortcuts" />
+      <ComponentRef Id="TDAgentBat" />
+    </Feature>
+    <UI />
+  </Product>
 </Wix>
