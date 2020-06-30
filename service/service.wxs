@@ -23,7 +23,7 @@
               <Component Id="TDAgentBat">
                 <File Name="td-agent2.bat"
                       KeyPath="yes"
-                      Source="$(var.SourceDir)\bin\td-agent-service.bat" />
+                      Source="bin\td-agent-service.bat" />
                 <ServiceInstall Id="ServiceInstallFluentdWinSvc"
                                 ErrorControl="normal"
                                 Type="ownProcess"
