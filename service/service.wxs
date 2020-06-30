@@ -20,7 +20,8 @@
             <Directory Id="TDAgentBinDir"
                        Name="bin"
                        ComponentGuidGenerationSeed="3ad15499-f8a4-471b-bc7f-16aa4abfd894">
-              <Component Id="TDAgentBat">
+              <Component Id="TDAgentBat"
+                         Guid="35b72e6a-a373-40d3-aca4-6aef15750aa9">
                 <File Name="td-agent2.bat"
                       KeyPath="yes"
                       Source="bin\td-agent-service.bat" />
