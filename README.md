@@ -1,0 +1,2 @@
+# wixtoolset-examples
+wix
