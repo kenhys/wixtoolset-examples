@@ -3,6 +3,7 @@
   <Product Id="9C7ADA41-D557-44DE-9BD2-E0E6E9D806A8" Name="TestProduct" Language="1033" Version="0.0.0.1" Manufacturer="WixEdit" UpgradeCode="32D206C2-869F-43C7-B0DB-043DE66E620E">
     <Package Description="Test file in a Product" Comments="Simple test" InstallerVersion="200" Compressed="yes" />
     <Media Id="1" Cabinet="simple.cab" EmbedCab="yes" />
+    <SetDirectory Id="WINDOWSVOLUME" Value="[WindowsVolume]" />
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="ProgramFilesFolder" Name="PFiles" />
       <Directory Id="ProgramMenuFolder">
