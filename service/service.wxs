@@ -60,7 +60,7 @@
     <UI />
 
     <CustomAction Id="InstallFluentdWinSVC"
-                  ExeCommand="[PROJECTLOCATION]bin\td-agent.bat --reg-winsvc i --reg-winsvc-fluentdopt &quot;-c [PROJECTLOCATION]\etc\td-agent\td-agent.conf -o [PROJECTLOCATION]\td-agent.log&quot;"
+                  ExeCommand="[PROJECTLOCATION]bin\td-agent.bat --reg-winsvc i --reg-winsvc-auto-start --reg-winsvc-delay-start --reg-winsvc-fluentdopt &quot;-c [PROJECTLOCATION]\etc\td-agent\td-agent.conf -o [PROJECTLOCATION]\td-agent.log&quot;"
                   Directory="PROJECTLOCATION"
                   Execute="deferred"
                   Return="asyncNoWait"
