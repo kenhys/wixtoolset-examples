@@ -39,7 +39,9 @@
                                 DisplayName="Fluentd Windows Service"
                                 Description="Fluentd is an event collector system."
                                 Start="demand"
-                                Account="[WIX_ACCOUNT_LOCALSYSTEM]" />
+                                Account="[WIX_ACCOUNT_LOCALSYSTEM]" >
+                  <PermissionEx Sddl="D:AI(A;OICIID;FA;;;BA)(A;OICIID;FA;;;SY)(A;OICIID;0x1200a9;;;BU)(A;ID;0x1301bf;;;AU)(A;OICIIOID;SDGXGWGR;;;AU)" />
+                </ServiceInstall>
                 <ServiceControl Id="ServiceControlFluentdWinSvcStart"
                                 Name="fluentdwinsvc"
                                 Start="install" />
