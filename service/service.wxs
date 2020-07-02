@@ -38,7 +38,7 @@
                                 Name="fluentdwinsvc"
                                 DisplayName="Fluentd Windows Service"
                                 Description="Fluentd is an event collector system."
-                                Start="ondemand"
+                                Start="demand"
                                 Account="[WIX_ACCOUNT_LOCALSYSTEM]" />
                 <ServiceControl Id="ServiceControlFluentdWinSvcStart"
                                 Name="fluentdwinsvc"
