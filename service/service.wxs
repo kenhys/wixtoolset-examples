@@ -38,14 +38,15 @@
                                 Name="fluentdwinsvc"
                                 DisplayName="Fluentd Windows Service"
                                 Description="Fluentd is an event collector system."
-                                Start="auto"
-                                Arguments="--reg-winsvc i --reg-winsvc-fluentdopt '-c [PROJECTLOCATION]\etc\td-agent\td-agent.conf -o [PROJECTLOCATION]\td-agent.log'"
+                                Start="ondemand"
                                 Account="[WIX_ACCOUNT_LOCALSYSTEM]" />
-                  <ServiceControl Id="ServiceControlFluentdWinSvc"
-                                  Name="fluentdwinsvc"
-                                  Start="install"
-                                  Stop="both"
-                                  Remove="uninstall" />
+                <ServiceControl Id="ServiceControlFluentdWinSvcStart"
+                                Name="fluentdwinsvc"
+                                Start="install" />
+                <ServiceControl Id="ServiceControlFluentdWinSvcStop"
+                                Name="fluentdwinsvc"
+                                Stop="uninstall"
+                                Remove="uninstall" />
               </Component>
             </Directory>
           </Directory>
@@ -57,5 +58,16 @@
       <ComponentRef Id="TDAgentBat" />
     </Feature>
     <UI />
+
+    <CustomAction Id="InstallFluentdWinSVC"
+                  ExeCommand="[PROJECTLOCATION]bin\td-agent.bat --reg-winsvc i --reg-winsvc-fluentdopt &quot;-c [PROJECTLOCATION]\etc\td-agent\td-agent.conf -o [PROJECTLOCATION]\td-agent.log&quot;"
+                  Directory="PROJECTLOCATION"
+                  Execute="deferred"
+                  Return="asyncNoWait"
+                  Impersonate="no" />
+    <InstallExecuteSequence>
+      <Custom Action="InstallFluentdWinSVC" After="InstallFiles">NOT Installed</Custom>
+    </InstallExecuteSequence>
+    
   </Product>
 </Wix>
