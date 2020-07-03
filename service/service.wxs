@@ -36,6 +36,7 @@
     </Directory>
     <Feature Id="DefaultFeature" Title="Main Feature" Level="1">
       <ComponentRef Id="StartMenuShortcuts" />
+      <ComponentRef Id="TDAgentBat" />
     </Feature>
     <UI />
 
