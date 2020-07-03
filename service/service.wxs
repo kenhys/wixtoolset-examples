@@ -27,6 +27,7 @@
           </Directory>
         </Directory>
       </Directory>
+    </Directory>
     <Feature Id="DefaultFeature" Title="Main Feature" Level="1">
       <ComponentRef Id="StartMenuShortcuts" />
     </Feature>
