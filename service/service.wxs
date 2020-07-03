@@ -9,6 +9,7 @@
         InstallScope="perMachine"
         Compressed="yes" />
     <Media Id="1" Cabinet="simple.cab" EmbedCab="yes" />
+    <SetDirectory Id="WINDOWSVOLUME" Value="[WindowsVolume]" />
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="ProgramFilesFolder" Name="PFiles" />
       <Directory Id="ProgramMenuFolder">
@@ -18,6 +19,12 @@
             <RegistryValue Root="HKCU" Key="Software\[Manufacturer]\[ProductName]" Type="string" Value="" />
             <util:InternetShortcut Id="WebsiteShortcut" Name="TDAgentBuilder4" Target="https://github.com/fluent-plugins-nursery/td-agent-builder" />
           </Component>
+        </Directory>
+      </Directory>
+    </Directory>
+    <Directory Id="WINDOWSVOLUME">
+      <Directory Id="OPTLOCATION" Name="opt">
+        <Directory Id="PROJECTLOCATION" Name="td-agent">
         </Directory>
       </Directory>
     </Directory>
