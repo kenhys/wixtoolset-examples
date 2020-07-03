@@ -9,7 +9,6 @@
         InstallScope="perMachine"
         Compressed="yes" />
     <Media Id="1" Cabinet="simple.cab" EmbedCab="yes" />
-    <SetDirectory Id="WINDOWSVOLUME" Value="[WindowsVolume]" />
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="ProgramFilesFolder" Name="PFiles" />
       <Directory Id="ProgramMenuFolder">
