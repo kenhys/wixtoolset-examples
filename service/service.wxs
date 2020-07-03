@@ -29,6 +29,10 @@
               <File Name="td-agent-service.bat"
                     KeyPath="yes"
                     Source="bin\td-agent-service.bat" />
+              <ServiceControl Id="ServiceControlFluentdWinSvcStop"
+                              Name="fluentdwinsvc"
+                              Stop="uninstall"
+                              Remove="uninstall" />
             </Component>
           </Directory>
         </Directory>
@@ -46,15 +50,8 @@
                   Execute="deferred"
                   Return="check"
                   Impersonate="no" />
-    <CustomAction Id="UnInstallFluentdWinSVC"
-                  ExeCommand="[PROJECTLOCATION]bin\td-agent.bat --reg-winsvc u"
-                  Directory="PROJECTLOCATION"
-                  Execute="deferred"
-                  Return="check"
-                  Impersonate="no" />
     <InstallExecuteSequence>
       <Custom Action="InstallFluentdWinSVC" After="InstallFiles">NOT Installed</Custom>
-      <Custom Action="UnInstallFluentdWinSVC" Before="RemoveFiles">NOT Installed</Custom>
     </InstallExecuteSequence>
     
   </Product>
