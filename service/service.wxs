@@ -21,13 +21,12 @@
           </Component>
         </Directory>
       </Directory>
-    </Directory>
-    <Directory Id="WINDOWSVOLUME">
-      <Directory Id="OPTLOCATION" Name="opt">
-        <Directory Id="PROJECTLOCATION" Name="td-agent">
+      <Directory Id="WINDOWSVOLUME">
+        <Directory Id="OPTLOCATION" Name="opt">
+          <Directory Id="PROJECTLOCATION" Name="td-agent">
+          </Directory>
         </Directory>
       </Directory>
-    </Directory>
     <Feature Id="DefaultFeature" Title="Main Feature" Level="1">
       <ComponentRef Id="StartMenuShortcuts" />
     </Feature>
