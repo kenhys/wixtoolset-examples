@@ -21,43 +21,9 @@
           </Component>
         </Directory>
       </Directory>
-      <Directory Id="WINDOWSVOLUME">
-        <Directory Id="OPTLOCATION" Name="opt">
-          <Directory Id="PROJECTLOCATION" Name="td-agent">
-            <Directory Id="TDAgentBinDir"
-                       Name="bin"
-                       ComponentGuidGenerationSeed="3ad15499-f8a4-471b-bc7f-16aa4abfd894">
-              <Component Id="TDAgentBat"
-                         Guid="35b72e6a-a373-40d3-aca4-6aef15750aa9">
-                <File Name="td-agent-service.bat"
-                      KeyPath="yes"
-                      Source="bin\td-agent-service.bat" />
-                <ServiceInstall Id="ServiceInstallFluentdWinSvc"
-                                ErrorControl="normal"
-                                Type="ownProcess"
-                                Name="fluentdwinsvc"
-                                DisplayName="Fluentd Windows Service"
-                                Description="Fluentd is an event collector system."
-                                Start="demand"
-                                Account="[WIX_ACCOUNT_LOCALSYSTEM]" >
-                  <PermissionEx Sddl="D:AI(A;OICIID;FA;;;BA)(A;OICIID;FA;;;SY)(A;OICIID;0x1200a9;;;BU)(A;ID;0x1301bf;;;AU)(A;OICIIOID;SDGXGWGR;;;AU)" />
-                </ServiceInstall>
-                <ServiceControl Id="ServiceControlFluentdWinSvcStart"
-                                Name="fluentdwinsvc"
-                                Start="install" />
-                <ServiceControl Id="ServiceControlFluentdWinSvcStop"
-                                Name="fluentdwinsvc"
-                                Stop="uninstall"
-                                Remove="uninstall" />
-              </Component>
-            </Directory>
-          </Directory>
-        </Directory>
-      </Directory>
     </Directory>
     <Feature Id="DefaultFeature" Title="Main Feature" Level="1">
       <ComponentRef Id="StartMenuShortcuts" />
-      <ComponentRef Id="TDAgentBat" />
     </Feature>
     <UI />
 
@@ -65,10 +31,17 @@
                   ExeCommand="[PROJECTLOCATION]bin\td-agent.bat --reg-winsvc i --reg-winsvc-auto-start --reg-winsvc-delay-start --reg-winsvc-fluentdopt &quot;-c [PROJECTLOCATION]\etc\td-agent\td-agent.conf -o [PROJECTLOCATION]\td-agent.log&quot;"
                   Directory="PROJECTLOCATION"
                   Execute="deferred"
-                  Return="asyncNoWait"
+                  Return="check"
+                  Impersonate="no" />
+    <CustomAction Id="UnInstallFluentdWinSVC"
+                  ExeCommand="[PROJECTLOCATION]bin\td-agent.bat --reg-winsvc u"
+                  Directory="PROJECTLOCATION"
+                  Execute="deferred"
+                  Return="check"
                   Impersonate="no" />
     <InstallExecuteSequence>
       <Custom Action="InstallFluentdWinSVC" After="InstallFiles">NOT Installed</Custom>
+      <Custom Action="UnInstallFluentdWinSVC" Before="RemoveFiles">NOT Installed</Custom>
     </InstallExecuteSequence>
     
   </Product>
