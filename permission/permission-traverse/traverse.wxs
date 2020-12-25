@@ -17,6 +17,7 @@
             <Component Id="TraverseAcl" Guid="78fc2baf-50ab-4860-b1de-9875669c82cd">
               <CreateFolder>
                 <Permission User="Users" GenericExecute="yes" GenericRead="yes" Traverse="yes"/>
+                <Permission User="Administrators" GenericAll="yes" Traverse="yes"/>
               </CreateFolder>
             </Component>
           </Directory>
