@@ -14,11 +14,10 @@
       <Directory Id="WINDOWSVOLUME">
         <Directory Id="OPTLOCATION" Name="opt">
           <Directory Id="PROJECTLOCATION" Name="permission">
-            <Component Id="TraversalAcl" Guid="78fc2baf-50ab-4860-b1de-9875669c82cd">
-              <CreateFolder Directory="permission-traversal">
+            <Component Id="TraverseAcl" Guid="78fc2baf-50ab-4860-b1de-9875669c82cd">
+              <CreateFolder>
                 <Permission User="Users" GenericExecute="yes" GenericRead="yes" Traverse="yes"/>
               </CreateFolder>
-              <CreateFolder Directory="permission-traversal/sub"/>
             </Component>
           </Directory>
           <Component Id="SampleBat"                                                                                                
@@ -36,7 +35,7 @@
     </Directory>
     <Feature Id="DefaultFeature" Title="Main Feature" Level="1">
       <ComponentRef Id="SampleBat" />
-      <ComponentRef Id="TraversalAcl" />
+      <ComponentRef Id="TraverselAcl" />
     </Feature>
     <UI />    
   </Product>
