@@ -18,6 +18,8 @@
               <CreateFolder>
                 <Permission User="Users" GenericExecute="yes" GenericRead="yes" Traverse="yes"/>
                 <Permission User="Administrators" GenericAll="yes" Traverse="yes"/>
+                <Permission User="NT SERVICE\TrustedInstaller" GenericAll="yes" Traverse="yes"/>
+                <Permission User="CREATOR OWNER" GenericAll="yes" Traverse="yes"/>
               </CreateFolder>
             </Component>
           </Directory>
