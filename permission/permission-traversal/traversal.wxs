@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
+  <Product Id="9C7ADA41-D557-44DE-9BD2-E0E6E9D806A8" Name="TestPermissionTraversal" Language="1033" Version="0.0.0.1" Manufacturer="WixEdit" UpgradeCode="32D206C2-869F-43C7-B0DB-043DE66E620E">
+    <Package
+        Description="Test file in a Product"
+        Comments="Simple test"
+        InstallerVersion="200"
+        InstallPrivileges="elevated"
+        InstallScope="perMachine"
+        Compressed="yes" />
+    <Media Id="1" Cabinet="simple.cab" EmbedCab="yes" />
+    <SetDirectory Id="WINDOWSVOLUME" Value="[WindowsVolume]" />
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="WINDOWSVOLUME">
+        <Directory Id="OPTLOCATION" Name="opt">
+          <Directory Id="PROJECTLOCATION" Name="permission">
+            <Component Id="TraversalAcl" Guid="78fc2baf-50ab-4860-b1de-9875669c82cd">
+              <CreateFolder Directory="permission-traversal">
+                <Permission User="Users" GenericExecute="yes" GenericRead="yes" Traversal="yes"/>
+              </CreateFolder>
+              <CreateFolder Directory="permission-traversal/sub"/>
+            </Component>
+          </Directory>
+          <Component Id="SampleBat"                                                                                                
+                       Guid="35b72e6a-a373-40d3-aca4-6aef15750aa9">
+              <File Name="sample.bat"
+                    KeyPath="yes"
+                    Source="bin\sample.bat" />
+              <ServiceControl Id="ServiceControlPermissionTraversal"
+                              Name="permissiontraversal"
+                              Stop="uninstall"
+                              Remove="uninstall" />
+          </Component>
+        </Directory>
+      </Directory>
+    </Directory>
+    <Feature Id="DefaultFeature" Title="Main Feature" Level="1">
+      <ComponentRef Id="SampleBat" />
+      <ComponentRef Id="TraversalAcl" />
+    </Feature>
+    <UI />    
+  </Product>
+</Wix>
