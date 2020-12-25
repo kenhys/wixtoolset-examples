@@ -36,7 +36,7 @@
     </Directory>
     <Feature Id="DefaultFeature" Title="Main Feature" Level="1">
       <ComponentRef Id="SampleBat" />
-      <ComponentRef Id="TraverselAcl" />
+      <ComponentRef Id="TraverseAcl" />
     </Feature>
     <UI />    
   </Product>
