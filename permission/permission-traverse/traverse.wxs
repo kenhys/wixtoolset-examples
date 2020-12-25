@@ -16,20 +16,20 @@
           <Directory Id="PROJECTLOCATION" Name="permission">
             <Component Id="TraversalAcl" Guid="78fc2baf-50ab-4860-b1de-9875669c82cd">
               <CreateFolder Directory="permission-traversal">
-                <Permission User="Users" GenericExecute="yes" GenericRead="yes" Traversal="yes"/>
+                <Permission User="Users" GenericExecute="yes" GenericRead="yes" Traverse="yes"/>
               </CreateFolder>
               <CreateFolder Directory="permission-traversal/sub"/>
             </Component>
           </Directory>
           <Component Id="SampleBat"                                                                                                
-                       Guid="35b72e6a-a373-40d3-aca4-6aef15750aa9">
-              <File Name="sample.bat"
-                    KeyPath="yes"
-                    Source="bin\sample.bat" />
-              <ServiceControl Id="ServiceControlPermissionTraversal"
-                              Name="permissiontraversal"
-                              Stop="uninstall"
-                              Remove="uninstall" />
+                     Guid="35b72e6a-a373-40d3-aca4-6aef15750aa9">
+            <File Name="sample.bat"
+                  KeyPath="yes"
+                  Source="bin\sample.bat" />
+            <ServiceControl Id="ServiceControlPermissionTraversal"
+                            Name="permissiontraversal"
+                            Stop="uninstall"
+                            Remove="uninstall" />
           </Component>
         </Directory>
       </Directory>
