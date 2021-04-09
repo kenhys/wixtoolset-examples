@@ -16,7 +16,7 @@
           <Directory Id="PROJECTLOCATION" Name="permission">
             <Component Id="TraverseAcl" Guid="78fc2baf-50ab-4860-b1de-9875669c82cd">
               <CreateFolder>
-                <PermissionEx Sddl="(A;;GRGX;;;S-1-5-11)"/>
+                <PermissionEx Sddl="D:(A;OICI;0x1200a9;;;BU)"/>
               </CreateFolder>
             </Component>
           </Directory>
