@@ -23,38 +23,47 @@
           <Directory Id="PROJECTLOCATION" Name="mklink">
             <Component Id="TraverseAcl" Guid="6aca2755-77ec-49be-bd37-3f026fad8bc3">
               <CreateFolder>
-                <PermissionEx Sddl="D:(A;OICI;0x1200a9;;;BU)"/>
-                <PermissionEx Sddl="D:(A;OICI;FA;;;FA)"/>
+                <PermissionEx Sddl="D:(A;OICI;0x1200a9;;;BU)(A;OICI;FA;;;BA)(A;OICI;FA;;;S-1-5-80-956008885-3418522649-1831038044-1853292631-2271478464)(A;OICI;FA;;;CO)(A;OICI;FA;;;SY)"/>
               </CreateFolder>
             </Component>
           </Directory>
-          <Component Id="SampleBat"
-                     Guid="35b72e6a-a373-40d3-aca4-6aef15750aa9">
-            <File Name="sample.bat"
-                  KeyPath="yes"
-                  Source="bin\sample.bat" />
-          </Component>
         </Directory>
       </Directory>
     </Directory>
+
+    <DirectoryRef Id="PROJECTLOCATION">
+      <Component Id="SampleBat"
+                 Guid="35b72e6a-a373-40d3-aca4-6aef15750aa9">
+        <File Name="sample.bat"
+              KeyPath="yes"
+              Source="bin\sample.bat" />
+      </Component>
+    </DirectoryRef>
+
     <Feature Id="DefaultFeature" Title="Main Feature" Level="1">
       <ComponentRef Id="SampleBat" />
       <ComponentRef Id="TraverseAcl" />
     </Feature>
+    <!--
+        <SetProperty Id="CreateCompatBat" Value="mklink &quot;[PROJECTLOCATION]bin\compat.lnk&quot; &quot;[PROJECTLOCATION]bin\sample.bat&quot;" After="InstallFiles" Sequence="execute"/>
+    -->
     <Property Id="CreateCompatBat" Value=" "/>
-    <CustomAction Id="SetCreateCompatBat"
+        <CustomAction Id="SetCreateCompatBat"
                   Property="CreateCompatBat"
-                  Value="mklink &quot;[PROJECTLOCATION]bin\compat.lnk&quot; &quot;[PROJECTLOCATION]bin\sample.bat&quot;"/>
+                  Value="&quot;mklink&quot; &quot;[PROJECTLOCATION]\compat.lnk&quot; &quot;[PROJECTLOCATION]\sample.bat&quot;"/>
     <CustomAction Id="CreateCompatBat"
                   BinaryKey="WixCA"
                   DllEntry="WixQuietExec64"
                   Execute="deferred"
                   Return="check"
                   Impersonate="no" />
-    <Property Id="DeleteCompatBat" Value=" "/>
-    <CustomAction Id="SetDeleteCompatBat"
+        <Property Id="DeleteCompatBat" Value=" "/>
+        <CustomAction Id="SetDeleteCompatBat"
                   Property="DeleteCompatBat"
-                  Value="mklink &quot;[PROJECTLOCATION]bin\compat.lnk&quot; &quot;[PROJECTLOCATION]bin\sample.bat&quot;"/>
+                  Value="&quot;del&quot; &quot;[PROJECTLOCATION]\compat.lnk&quot;"/>
+        <!--
+            <SetProperty Id="DeleteCompatBat" Value="del &quot;[PROJECTLOCATION]bin\compat.lnk&quot;" After="InstallInitialize" Sequence="execute"/>
+        -->
     <CustomAction Id="DeleteCompatBat"
                   BinaryKey="WixCA"
                   DllEntry="WixQuietExec64"
@@ -62,10 +71,16 @@
                   Return="check"
                   Impersonate="no" />
     <InstallExecuteSequence>
-      <Custom Action="SetCreateCompatBat" After="InstallFiles">NOT Installed</Custom>
-      <Custom Action="CreateCompatBat" After="SetCreateCompatBat">NOT Installed</Custom>
-      <Custom Action="SetDeleteCompatBat" After="InstallInitialized">Installed AND NOT REINSTALL</Custom>
-      <Custom Action="DeleteCompatBat" After="SetDeleteCpmpatBat">Installed AND NOT REINSTALL</Custom>
+          <Custom Action="SetCreateCompatBat" After="InstallFiles">NOT Installed</Custom>
+          <Custom Action="CreateCompatBat" After="SetCreateCompatBat">NOT Installed</Custom>
+      <!--
+          <Custom Action="CreateCompatBat" After="InstallFiles">NOT Installed</Custom>
+      -->
+          <Custom Action="SetDeleteCompatBat" After="InstallFiles">Installed AND NOT REINSTALL</Custom>
+          <Custom Action="DeleteCompatBat" After="SetDeleteCompatBat">Installed AND NOT REINSTALL</Custom>
+          <!--
+              <Custom Action="DeleteCompatBat" After="InstallFiles">Installed AND NOT REINSTALL</Custom>
+              -->
     </InstallExecuteSequence>
     <UI />
   </Product>
