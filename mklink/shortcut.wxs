@@ -37,14 +37,14 @@
         <File Name="sample.bat"
               KeyPath="yes"
               Source="bin\sample.bat" />
+        <!-- See https://stackoverflow.com/questions/14141436/is-there-any-way-to-create-symbolic-link-in-wix-installer -->
+        <Shortcut Id="LnkSampleBat" Directory="[PROJECTLOCATION]" Name="compat.lnk" Target="[PROJECTLOCATION]sample.bat" WorkingDirectory="[PROJECTLOCATION]"/>
       </Component>
     </DirectoryRef>
 
     <Feature Id="DefaultFeature" Title="Main Feature" Level="1">
       <ComponentRef Id="SampleBat" />
       <ComponentRef Id="TraverseAcl" />
-      <!-- See https://stackoverflow.com/questions/14141436/is-there-any-way-to-create-symbolic-link-in-wix-installer -->
-      <Shortcut Id="LnkSampleBat" Directory="[PROJECTLOCATION]" Name="compat.lnk" Target="[PROJECTLOCATION]sample.bat" WorkingDirectory="[PROJECTLOCATION]"/>
     </Feature>
     <UI />
   </Product>
