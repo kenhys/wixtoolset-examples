@@ -50,7 +50,7 @@
     <Property Id="CreateCompatBat" Value=" "/>
     <CustomAction Id="SetCreateCompatBat"
                   Property="CreateCompatBat"
-                  Value="&quot;mklink&quot; &quot;[PROJECTLOCATION]\compat.lnk&quot; &quot;[PROJECTLOCATION]\sample.bat&quot;"/>
+                  Value="&quot;mklink&quot; &quot;[PROJECTLOCATION]compat.lnk&quot; &quot;[PROJECTLOCATION]sample.bat&quot;"/>
     <CustomAction Id="CreateCompatBat"
                   BinaryKey="WixCA"
                   DllEntry="WixQuietExec64"
@@ -60,7 +60,7 @@
     <Property Id="DeleteCompatBat" Value=" "/>
     <CustomAction Id="SetDeleteCompatBat"
                   Property="DeleteCompatBat"
-                  Value="&quot;del&quot; &quot;[PROJECTLOCATION]\compat.lnk&quot;"/>
+                  Value="&quot;del&quot; &quot;[PROJECTLOCATION]compat.lnk&quot;"/>
     <!--
         <SetProperty Id="DeleteCompatBat" Value="del &quot;[PROJECTLOCATION]bin\compat.lnk&quot;" After="InstallInitialize" Sequence="execute"/>
     -->
