@@ -76,7 +76,7 @@
       <!--
           <Custom Action="CreateCompatBat" After="InstallFiles">NOT Installed</Custom>
       -->
-      <Custom Action="SetDeleteCompatBat" After="InstallFinalize">Installed AND NOT REINSTALL</Custom>
+      <Custom Action="SetDeleteCompatBat" Before="InstallFinalize">Installed AND NOT REINSTALL</Custom>
       <Custom Action="DeleteCompatBat" After="SetDeleteCompatBat">Installed AND NOT REINSTALL</Custom>
       <!--
           <Custom Action="DeleteCompatBat" After="InstallFiles">Installed AND NOT REINSTALL</Custom>
