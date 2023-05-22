@@ -36,9 +36,10 @@
                  Guid="35b72e6a-a373-40d3-aca4-6aef15750aa9">
         <File Name="sample.bat"
               KeyPath="yes"
-              Source="bin\sample.bat" />
-        <!-- See https://stackoverflow.com/questions/14141436/is-there-any-way-to-create-symbolic-link-in-wix-installer -->
-        <Shortcut Id="LnkSampleBat" Directory="[PROJECTLOCATION]" Name="compat.lnk" Target="[PROJECTLOCATION]sample.bat" WorkingDirectory="[PROJECTLOCATION]"/>
+              Source="bin\sample.bat">
+          <!-- See https://stackoverflow.com/questions/14141436/is-there-any-way-to-create-symbolic-link-in-wix-installer -->
+          <Shortcut Id="LnkSampleBat" Name="compat.lnk" WorkingDirectory="[PROJECTLOCATION]"/>
+        </File>
       </Component>
     </DirectoryRef>
 
