@@ -48,7 +48,7 @@
         <SetProperty Id="CreateCompatBat" Value="mklink &quot;[PROJECTLOCATION]bin\compat.lnk&quot; &quot;[PROJECTLOCATION]bin\sample.bat&quot;" After="InstallFiles" Sequence="execute"/>
     -->
     <Property Id="CreateCompatBat" Value=" "/>
-        <CustomAction Id="SetCreateCompatBat"
+    <CustomAction Id="SetCreateCompatBat"
                   Property="CreateCompatBat"
                   Value="&quot;mklink&quot; &quot;[PROJECTLOCATION]\compat.lnk&quot; &quot;[PROJECTLOCATION]\sample.bat&quot;"/>
     <CustomAction Id="CreateCompatBat"
@@ -57,13 +57,13 @@
                   Execute="deferred"
                   Return="check"
                   Impersonate="no" />
-        <Property Id="DeleteCompatBat" Value=" "/>
-        <CustomAction Id="SetDeleteCompatBat"
+    <Property Id="DeleteCompatBat" Value=" "/>
+    <CustomAction Id="SetDeleteCompatBat"
                   Property="DeleteCompatBat"
                   Value="&quot;del&quot; &quot;[PROJECTLOCATION]\compat.lnk&quot;"/>
-        <!--
-            <SetProperty Id="DeleteCompatBat" Value="del &quot;[PROJECTLOCATION]bin\compat.lnk&quot;" After="InstallInitialize" Sequence="execute"/>
-        -->
+    <!--
+        <SetProperty Id="DeleteCompatBat" Value="del &quot;[PROJECTLOCATION]bin\compat.lnk&quot;" After="InstallInitialize" Sequence="execute"/>
+    -->
     <CustomAction Id="DeleteCompatBat"
                   BinaryKey="WixCA"
                   DllEntry="WixQuietExec64"
@@ -71,16 +71,16 @@
                   Return="check"
                   Impersonate="no" />
     <InstallExecuteSequence>
-          <Custom Action="SetCreateCompatBat" After="InstallFiles">NOT Installed</Custom>
-          <Custom Action="CreateCompatBat" After="SetCreateCompatBat">NOT Installed</Custom>
+      <Custom Action="SetCreateCompatBat" After="InstallFiles">NOT Installed</Custom>
+      <Custom Action="CreateCompatBat" After="SetCreateCompatBat">NOT Installed</Custom>
       <!--
           <Custom Action="CreateCompatBat" After="InstallFiles">NOT Installed</Custom>
       -->
-          <Custom Action="SetDeleteCompatBat" After="InstallFiles">Installed AND NOT REINSTALL</Custom>
-          <Custom Action="DeleteCompatBat" After="SetDeleteCompatBat">Installed AND NOT REINSTALL</Custom>
-          <!--
-              <Custom Action="DeleteCompatBat" After="InstallFiles">Installed AND NOT REINSTALL</Custom>
-              -->
+      <Custom Action="SetDeleteCompatBat" After="InstallFiles">Installed AND NOT REINSTALL</Custom>
+      <Custom Action="DeleteCompatBat" After="SetDeleteCompatBat">Installed AND NOT REINSTALL</Custom>
+      <!--
+          <Custom Action="DeleteCompatBat" After="InstallFiles">Installed AND NOT REINSTALL</Custom>
+      -->
     </InstallExecuteSequence>
     <UI />
   </Product>
