@@ -61,7 +61,7 @@
     <Property Id="DeleteCompatBat" Value=" "/>
     <CustomAction Id="SetDeleteCompatBat"
                   Property="DeleteCompatBat"
-                  Value="&quot;cmd&quot; /c &quot;del [PROJECTLOCATION]compat.lnk&quot;"/>
+                  Value="&quot;cmd&quot; /c &quot;del [PROJECTLOCATION]compat.bat&quot;"/>
     <CustomAction Id="DeleteCompatBat"
                   BinaryKey="WixCA"
                   DllEntry="WixQuietExec64"
