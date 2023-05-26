@@ -50,7 +50,7 @@
     <Property Id="CreateCompatBat" Value=" "/>
     <CustomAction Id="SetCreateCompatBat"
                   Property="CreateCompatBat"
-                  Value="&quot;cmd&quot; /c &quot;fsutil hardlink create [PROJECTLOCATION]compat.lnk [PROJECTLOCATION]sample.bat&quot;"/>
+                  Value="&quot;cmd&quot; /c &quot;fsutil hardlink create [PROJECTLOCATION]compat.bat [PROJECTLOCATION]sample.bat&quot;"/>
     <CustomAction Id="CreateCompatBat"
                   BinaryKey="WixCA"
                   DllEntry="WixQuietExec64"
