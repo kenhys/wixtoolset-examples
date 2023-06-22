@@ -43,13 +43,13 @@
     </DirectoryRef>
 
     <Feature Id="DefaultFeature" Title="Main Feature" Level="1">
-      <ComponentRef Id="SampleBat" />
+      <ComponentRef Id="PostInstallBat" />
       <ComponentRef Id="TraverseAcl" />
     </Feature>
     <Property Id="PostInstall" Value=" "/>
     <CustomAction Id="SetPostInstallCommand"
                   Property="PostInstall"
-                  Value="&quot;[PROJECTLOCATION]bin\sample.bat&quot;"/>
+                  Value="&quot;[PROJECTLOCATION]bin\post-install.bat&quot;"/>
     <CustomAction Id="PostInstall"
                   BinaryKey="WixCA"
                   DllEntry="WixQuietExec64"
