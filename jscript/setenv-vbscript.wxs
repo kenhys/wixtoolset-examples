@@ -9,7 +9,7 @@
             <Directory Id="WINDOWSVOLUME">
                 <Directory Id="OPTLOCATION" Name="opt">
                     <Directory Id="PROJECTLOCATION" Name="vbscript-setenv">
-                        <Component Id="TDAgentConfJs" Guid="35b72e6a-a373-40d3-aca4-6aef15750aa9">
+                        <Component Id="SetEnvJs" Guid="35b72e6a-a373-40d3-aca4-6aef15750aa9">
                             <File Name="set-env.js" KeyPath="yes" Source="bin\set-env.js" />
                         </Component>
                     </Directory>
@@ -17,7 +17,7 @@
             </Directory>
         </Directory>
         <Feature Id="DefaultFeature" Title="Main Feature" Level="1">
-            <ComponentRef Id="TDAgentConfJs" />
+            <ComponentRef Id="SetEnvJs" />
         </Feature>
         <UI />
         <CustomAction Id="SetInstallDir" Property="FLUENTPROJECTLOCATION" Value="[PROJECTLOCATION]" />

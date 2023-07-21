@@ -17,7 +17,7 @@
             </Directory>
         </Directory>
         <Feature Id="DefaultFeature" Title="Main Feature" Level="1">
-            <ComponentRef Id="TDAgentConfJs" />
+            <ComponentRef Id="SetEnvJs" />
         </Feature>
         <UI />
         <CustomAction Id="SetInstallDir" Property="FLUENTPROJECTLOCATION" Value="[PROJECTLOCATION]" />
