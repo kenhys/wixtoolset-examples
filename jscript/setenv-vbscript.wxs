@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Product Id="9C7ADA41-D557-44DE-9BD2-E0E6E9D806A8" Name="VBScript Set System Environment" Language="1033" Version="0.0.0.1" Manufacturer="WixEdit" UpgradeCode="32D206C2-869F-43C7-B0DB-043DE66E620E">
+        <Package Description="JScript sample" Comments="Simple test" InstallerVersion="200" InstallPrivileges="elevated" InstallScope="perMachine" Compressed="yes" />
+        <Media Id="1" Cabinet="simple.cab" EmbedCab="yes" />
+        <Binary Id="SetEnvJs" SourceFile="bin\set-env.js" />
+        <SetDirectory Id="WINDOWSVOLUME" Value="[WindowsVolume]" />
+        <Directory Id="TARGETDIR" Name="SourceDir">
+            <Directory Id="WINDOWSVOLUME">
+                <Directory Id="OPTLOCATION" Name="opt">
+                    <Directory Id="PROJECTLOCATION" Name="vbscript-setenv">
+                        <Component Id="TDAgentConfJs" Guid="35b72e6a-a373-40d3-aca4-6aef15750aa9">
+                            <File Name="set-env.js" KeyPath="yes" Source="bin\set-env.js" />
+                        </Component>
+                    </Directory>
+                </Directory>
+            </Directory>
+        </Directory>
+        <Feature Id="DefaultFeature" Title="Main Feature" Level="1">
+            <ComponentRef Id="TDAgentConfJs" />
+        </Feature>
+        <UI />
+        <CustomAction Id="SetInstallDir" Property="FLUENTPROJECTLOCATION" Value="[PROJECTLOCATION]" />
+        <CustomAction Id="ModifyDirSepForFluentPackageTopdir"
+                      Script="vbscript">
+          <![CDATA[
+                   pathvalue = Session.Property("FLUENTPROJECTLOCATION")
+                   newValue = Replace(pathvalue, "\\", "/")
+                   Session.Property("FLUENTPROJECTLOCATION") = newValue
+                   shellObject = CreateObject("WScript.Shell")
+                   systemEnv = shellObject.Environment("SYSTEM")
+                   systemEnv("FLUENT_PACKAGE_TOPDIR") = newValue
+          ]]>
+        </CustomAction>
+        <InstallExecuteSequence>
+            <Custom Action="ModifyDirSepForFluentPackageTopdir" Before="InstallFinalize">NOT Installed</Custom>
+        </InstallExecuteSequence>
+    </Product>
+</Wix>
