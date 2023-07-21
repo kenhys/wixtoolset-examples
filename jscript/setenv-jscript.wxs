@@ -8,7 +8,7 @@
         <Directory Id="TARGETDIR" Name="SourceDir">
             <Directory Id="WINDOWSVOLUME">
                 <Directory Id="OPTLOCATION" Name="opt">
-                    <Directory Id="PROJECTLOCATION" Name="vbscript-setenv">
+                    <Directory Id="PROJECTLOCATION" Name="jscript-setenv">
                         <Component Id="SetEnvJs" Guid="35b72e6a-a373-40d3-aca4-6aef15750aa9">
                             <File Name="set-env.js" KeyPath="yes" Source="bin\set-env.js" />
                         </Component>
