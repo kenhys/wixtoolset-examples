@@ -1,7 +1,7 @@
 
 function main () {
-    var location = Session.Property["FLUENTPROJECTLOCATION"];
-    var newValue = Replace(location, "\\", "/")
+    var projectLocation = Session.Property["FLUENTPROJECTLOCATION"];
+    var newValue = projectLocation.replace(location, "\\", "/")
     var systemEnv = WScript.Shell.Environment("SYSTEM");
     systemEnv("FLUENT_PACKAGE_TOPDIR") = newValue;
 }
