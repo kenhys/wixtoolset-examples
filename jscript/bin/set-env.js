@@ -4,5 +4,5 @@ function main () {
     var newValue = projectLocation.replace(/\\/g, "/");
     var shell = new ActiveXObject("WScript.Shell");
     var systemEnv = shell.Environment("SYSTEM");
-    systemEnv.item("FLUENT_PACKAGE_TOPDIR") = newValue;
+    systemEnv.Item("FLUENT_PACKAGE_TOPDIR") = newValue;
 }
