@@ -33,6 +33,7 @@
           ]]>
         </CustomAction>
         <InstallExecuteSequence>
+            <Custom Action="SetInstallDir" Before="ModifyDirSepForFluentPackageTopdir">NOT Installed</Custom>
             <Custom Action="ModifyDirSepForFluentPackageTopdir" Before="InstallFinalize">NOT Installed</Custom>
         </InstallExecuteSequence>
     </Product>
