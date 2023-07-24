@@ -27,9 +27,9 @@
                    pathvalue = Session.Property("FLUENTPROJECTLOCATION")
                    newValue = Replace(pathvalue, "\\", "/")
                    Session.Property("FLUENTPROJECTLOCATION") = newValue
-                   shellObject = CreateObject("WScript.Shell")
-                   systemEnv = shellObject.Environment("SYSTEM")
-                   systemEnv("FLUENT_PACKAGE_TOPDIR") = newValue
+                   Set shellObject = CreateObject("WScript.Shell")
+                   Set systemEnv = shellObject.Environment("SYSTEM")
+                   systemEnv.Item("FLUENT_PACKAGE_TOPDIR") = newValue
           ]]>
         </CustomAction>
         <InstallExecuteSequence>
