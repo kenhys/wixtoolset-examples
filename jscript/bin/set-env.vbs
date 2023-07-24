@@ -3,7 +3,8 @@ pathValue = "c:\\opt\\fluent"
 newValue = Replace(pathvalue, "\\", "/")
 ' Session.Property("FLUENTPROJECTLOCATION") = newValue
 WScript.echo(newValue)
-shellObject = CreateObject("WScript.Shell")
+Set shellObject = CreateObject("WScript.Shell")
 ' systemEnv = shellObject.Environment("SYSTEM")
-systemEnv = shellObject.Environment("USER")
-systemEnv("FLUENT_PACKAGE_TOPDIR") = newValue
+Set systemEnv = shellObject.Environment("USER")
+systemEnv.item("FLUENT_PACKAGE_TOPDIR") = newValue
+WScript.echo(systemEnv.item("FLUENT_PACKAGE_TOPDIR"))
