@@ -22,7 +22,7 @@
         <UI />
         <CustomAction Id="SetInstallDir" Property="FLUENTPROJECTLOCATION" Value="[PROJECTLOCATION]" />
         <CustomAction Id="ModifyDirSepForFluentPackageTopdir"
-                      Script="vbscript">
+                      Script="vbscript" Impersonate="no">
           <![CDATA[
                    pathvalue = Session.Property("FLUENTPROJECTLOCATION")
                    newValue = Replace(pathvalue, "\\", "/")
