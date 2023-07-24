@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-    <Product Id="9C7ADA41-D557-44DE-9BD2-E0E6E9D806A8" Name="VBScript Set System Environment" Language="1033" Version="0.0.0.1" Manufacturer="WixEdit" UpgradeCode="32D206C2-869F-43C7-B0DB-043DE66E620E">
+    <Product Id="9C7ADA41-D557-44DE-9BD2-E0E6E9D806A8" Name="WiX Toolset Example: VBScript Set System Environment" Language="1033" Version="0.0.0.1" Manufacturer="WixEdit" UpgradeCode="32D206C2-869F-43C7-B0DB-043DE66E620E">
         <Package Description="JScript sample" Comments="Simple test" InstallerVersion="200" InstallPrivileges="elevated" InstallScope="perMachine" Compressed="yes" />
         <Media Id="1" Cabinet="simple.cab" EmbedCab="yes" />
         <Binary Id="SetEnvJs" SourceFile="bin\set-env.js" />
