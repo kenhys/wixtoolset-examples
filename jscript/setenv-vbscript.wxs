@@ -33,8 +33,8 @@
           ]]>
         </CustomAction>
         <InstallExecuteSequence>
-            <Custom Action="SetInstallDir" Before="ModifyDirSepForFluentPackageTopdir">NOT Installed</Custom>
-            <Custom Action="ModifyDirSepForFluentPackageTopdir" Before="InstallFinalize">NOT Installed</Custom>
+            <Custom Action="SetInstallDir" Before="ModifyDirSepForTopdir">NOT Installed</Custom>
+            <Custom Action="ModifyDirSepForTopdir" Before="InstallFinalize">NOT Installed</Custom>
         </InstallExecuteSequence>
     </Product>
 </Wix>
