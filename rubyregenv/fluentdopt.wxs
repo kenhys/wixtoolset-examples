@@ -27,10 +27,6 @@
               </CreateFolder>
             </Component>
           </Directory>
-          <Directory Id="FLUENTPROJECTLOCATION" Name="fluent">
-            <Component Id="TraverseFluentAcl" Guid="8cefc495-25d6-48fe-b877-4418725ff3bb">
-            </Component>
-          </Directory>
         </Directory>
       </Directory>
     </Directory>
@@ -47,7 +43,6 @@
     <Feature Id="DefaultFeature" Title="Main Feature" Level="1">
       <ComponentRef Id="fluentdwinsvc" />
       <ComponentRef Id="TraverseAcl" />
-      <ComponentRef Id="TraverseFluentAcl" />
     </Feature>
 
     <Property Id="InstallFluentdWinSvcFluentdopt" Value=" "/>
@@ -61,8 +56,14 @@
                   Return="check"
                   Impersonate="no" />
 
+    <Property Id="FLUENTPROJECTLOCATION" Value=" "/>
+    <CustomAction Id="SetFluentProjectLocation"
+                  Property="FLUENTPROJECTLOCATION"
+                  Value="[OPTLOCATION]fluent\"/>
+
     <InstallExecuteSequence>
-      <Custom Action="SetInstallFluentdWinSvcFluentdoptCommand" After="InstallFiles">NOT Installed OR WIX_UPGRADE_DETECTED</Custom>
+      <Custom Action="SetFluentProjectLocation" After="InstallFiles">NOT Installed OR WIX_UPGRADE_DETECTED</Custom>
+      <Custom Action="SetInstallFluentdWinSvcFluentdoptCommand" After="SetFluentProjectLocation">NOT Installed OR WIX_UPGRADE_DETECTED</Custom>
       <Custom Action="InstallFluentdWinSvcFluentdopt" After="SetInstallFluentdWinSvcFluentdoptCommand">NOT Installed OR WIX_UPGRADE_DETECTED</Custom>
     </InstallExecuteSequence>
     <UI />
