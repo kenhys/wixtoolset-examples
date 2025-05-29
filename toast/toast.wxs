@@ -47,6 +47,12 @@
               KeyPath="yes"
               Source="fluent-package-post-toast.bat" />
       </Component>
+      <Component Id="PostToastPs"
+                 Guid="431c2252-13e2-47de-b15c-b69bebfd84d8">
+        <File Name="fluent-package-post-toast.ps1"
+              KeyPath="yes"
+              Source="fluent-package-post-toast.ps1" />
+      </Component>
     </DirectoryRef>
 
     <DirectoryRef Id="SHARELOCATION">
@@ -60,6 +66,7 @@
 
     <Feature Id="DefaultFeature" Title="Main Feature" Level="1">
       <ComponentRef Id="PostToastBat" />
+      <ComponentRef Id="PostToastPs" />
       <ComponentRef Id="PostToastIcon" />
       <ComponentRef Id="TraverseAcl" />
       <ComponentRef Id="TraverseAcl2" />
