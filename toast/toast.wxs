@@ -7,7 +7,7 @@
     lightArgs: "<projectname>.wixobj" -out "<projectname>.msi" <extensions> -ext WixUIExtension
 -->
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
-  <Product Id="acc98d08-ffda-4470-bfa4-b0c85e52a320" Name="BatchTest" Language="1033" Version="0.0.0.1" Manufacturer="WixEdit" UpgradeCode="6df5bed9-0319-4015-b0ea-6722ca52934b">
+  <Product Id="acc98d08-ffda-4470-bfa4-b0c85e52a320" Name="ToastTest" Language="1033" Version="0.0.0.1" Manufacturer="WixEdit" UpgradeCode="6df5bed9-0319-4015-b0ea-6722ca52934b">
     <Package
         Description="Test toast in a Product"
         Comments="Toast test"
