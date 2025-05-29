@@ -43,7 +43,7 @@
     <DirectoryRef Id="BINLOCATION">
       <Component Id="PostToastBat"
                  Guid="d0aec3d0-bd39-4ea7-a8a5-5c5d63b357ea">
-        <File Name="post-install.bat"
+        <File Name="fluent-package-post-toast.bat"
               KeyPath="yes"
               Source="fluent-package-post-toast.bat" />
       </Component>
