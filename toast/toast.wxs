@@ -76,12 +76,13 @@
     <CustomAction Id="SetPostNotifyWithToastBat"
                   Property="PostNotifyWithToastBat"
                   Value="&quot;[PROJECTLOCATION]bin\fluent-package-post-toast.bat&quot;"/>
+    <!-- impersonate:yes for non-system/user account -->
     <CustomAction Id="PostNotifyWithToastBat"
                   BinaryKey="WixCA"
                   DllEntry="WixQuietExec64"
                   Execute="deferred"
                   Return="check"
-                  Impersonate="no" />
+                  Impersonate="yes" />
 
     <InstallExecuteSequence>
       <!-- Notify enterprise services for Fluentd users -->
