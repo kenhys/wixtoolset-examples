@@ -57,14 +57,6 @@
                   Return="check"
                   Impersonate="no" />
 
-    <CustomAction Id="PostInstall"
-                  BinaryKey="WixCA"
-                  DllEntry="WixQuietExec64"
-                  Execute="deferred"
-                  Return="check"
-                  Impersonate="no" />
-
-
     <Property Id="BROWSER">
       <RegistrySearch Id="DefaultBrowser" Type="raw" Root='HKCR' Key='http\shell\open\command' />
     </Property>
