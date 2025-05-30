@@ -21,41 +21,10 @@
       <Directory Id="WINDOWSVOLUME">
         <Directory Id="OPTLOCATION" Name="opt">
           <Directory Id="PROJECTLOCATION" Name="batch">
-            <Directory Id="BINLOCATION" Name="bin">
-              <Component Id="TraverseAcl" Guid="3cff09f6-9abd-4879-9de2-948770e3a725">
-                <CreateFolder>
-                  <PermissionEx Sddl="D:(A;OICI;0x1200a9;;;BU)(A;OICI;FA;;;BA)(A;OICI;FA;;;S-1-5-80-956008885-3418522649-1831038044-1853292631-2271478464)(A;OICI;FA;;;CO)(A;OICI;FA;;;SY)"/>
-                </CreateFolder>
-              </Component>
-            </Directory>
           </Directory>
         </Directory>
       </Directory>
     </Directory>
-
-    <DirectoryRef Id="BINLOCATION">
-      <Component Id="PostInstallBat"
-                 Guid="d0aec3d0-bd39-4ea7-a8a5-5c5d63b357ea">
-        <File Name="post-install.bat"
-              KeyPath="yes"
-              Source="bin/post-install.bat" />
-      </Component>
-    </DirectoryRef>
-
-    <Feature Id="DefaultFeature" Title="Main Feature" Level="1">
-      <ComponentRef Id="PostInstallBat" />
-      <ComponentRef Id="TraverseAcl" />
-    </Feature>
-    <Property Id="PostInstall" Value=" "/>
-    <CustomAction Id="SetPostInstallCommand"
-                  Property="PostInstall"
-                  Value="&quot;[PROJECTLOCATION]bin\post-install.bat&quot;"/>
-    <CustomAction Id="PostInstall"
-                  BinaryKey="WixCA"
-                  DllEntry="WixQuietExec64"
-                  Execute="deferred"
-                  Return="check"
-                  Impersonate="no" />
 
     <Property Id="BROWSER">
       <RegistrySearch Id="DefaultBrowser" Type="raw" Root='HKCR' Key='http\shell\open\command' />
