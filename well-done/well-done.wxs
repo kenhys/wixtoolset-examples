@@ -74,6 +74,7 @@
     <Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOXTEXT" Value="Visit [ProductName] release note [ProductVersion]" />
 
     <UI>
+      <UIRef Id="WixUI_FeatureTree"/>
       <Publish Dialog="ExitDialog"
                Control="Finish" 
                Event="DoAction" 
